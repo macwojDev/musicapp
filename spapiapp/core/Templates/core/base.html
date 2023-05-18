@@ -9,8 +9,15 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
+    <nav class="w-full min-h-min grid grid-cols-3 gap-20 bg-gray-400">
+        <div class="px-12 py-8 text-2xl">
+            <p> Spotify </p>
+        </div>
+        <div class="px-12 py-8 text-5xl font-semibold">
+            <p> Music Stats App </p>
+        </div>
+    </nav>
     {% block content %}
     {% endblock content %}
-
 </body>
 </html>

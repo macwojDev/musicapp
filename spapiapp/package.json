@@ -2,7 +2,8 @@
   "watch": {
     "build": {
       "patterns": [
-        "core"
+        "core",
+        "musicrank"
       ],
       "extensions": "html",
       "quiet": "false"
