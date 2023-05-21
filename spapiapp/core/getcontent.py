@@ -3,12 +3,13 @@ import os
 import base64
 from requests import post,get
 import json
+import urllib.request
 
 load_dotenv()
 
 client_id = os.getenv("CLIENT_ID")
 client_secret = os.getenv("CLIENT_SECRET")
-
+save_path = '/static/images/'
 
 def get_token():
     auth_string = f'{client_id}:{client_secret}'
@@ -48,15 +49,27 @@ def get_songs_by_artist(token, artist_id):
     headers = get_auth_header(token)
     result = get(url, headers=headers)
     json_result = json.loads(result.content)['tracks']
-    print(json_result)
     return json_result
 
-token = get_token()
+def get_artist_image(token, artist_id, save_path=save_path):
+    headers = get_auth_header(token)
+    url = f'https://api.spotify.com/v1/artists/{artist_id}'
+    response = get(url, headers=headers)
+    data = response.json()
 
-result = search_for_artist(token, 'Drake')
+    if 'images' in data and data['images']:
+        image_url = data['images'][0]['url']
+        urllib.request.urlretrieve(image_url, save_path)
+        return image_url
+    else:
+        return None
+
+'''
+result = search_for_artist(token, 'Mery Spolsky')
 artist_id = result['id']
 print(result['name'])
 songs = get_songs_by_artist(token, artist_id)
 # wyświetlanie wyników jednocześnie numerując je, tworząc ranking
 for idx, song in enumerate(songs):
     print(f'{idx + 1}. {song["name"]}')
+'''

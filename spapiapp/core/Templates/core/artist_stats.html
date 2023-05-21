@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Artist Stats {% endblock title %}
+
+{% block content %}
+<main class="flex flex-col items-center text-black">
+<section class="h-3/5 bg-green-600 rounded-xl">
+<!-- <div class="flex justify-center">{{ artist_img }}</div> -->
+<div class="h-8 flex justify-center bg-green-800 text-2xl font-semibold rounded-t-xl"><h2>Top 10 utworów {{artist_name}}:</h2></div>
+{% for song in songs %}
+    <div class="m-3 flex justify-center">
+        <h1>{{forloop.counter}}. {{ song.name }}</h1>
+    </div>
+{% endfor %}
+</section>
+</main>
+{% endblock content %}

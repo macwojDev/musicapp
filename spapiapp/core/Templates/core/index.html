@@ -3,9 +3,21 @@
 {% block title %}Title{% endblock title %}
 
 {% block content %}
-<main class="flex flex-col">
-    <section class="w-2/3" id="">
-        <p> Oto utwory będące dzisiaj na topie! </p>
+<main class="flex justify-center min-w-screen min-h-screen text-black">
+    <div class="h-32"><p></p></div>
+    <section class="h-96 w-3/5 flex flex-col justify-center bg-green-600 rounded-xl" >
+        <div class="m-3 flex justify-center text-3xl font-semibold">Jaki artysta cię interesuje?</div>
+        <form action="{% url 'artist_stats'  %}" method="get">
+            <div class="m-8 flex justify-center text-2xl font-semibold">
+                <label for="artist">Wpisz nazwę artysty:</label>
+            </div>
+            <div class="m-3 flex justify-center">
+                <input type="text" name="artist" class="rounded-xl w-4/5 h-9">
+            </div>
+            <div class="m-8 flex justify-center">
+                <button class="py-4 px-8 text-xl bg-green-400 hover:bg-green-700 rounded-xl" type="submit">Potwierdź</button>
+            </div>
+        </form>
     </section>
 </main>
 {% endblock content %}
